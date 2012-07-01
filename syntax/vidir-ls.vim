@@ -1,7 +1,10 @@
 "   What: ls colors for vidir file listings
 "  Where: $VIMRUNTIME/syntax/vidir-ls.vim
 " Author: Magnus Woldrich <m@japh.se>
+" Update: 2012-07-01 22:07:28
 "    URL: https://github.com/trapd00r/vim-syntax-vidir-ls
+"         http://devel.japh.se/vim-syntax-vidir-ls/
+"         http://devel.japh.se/vidir
 "
 " This is supposed to be used with vidir [0]:
 "   export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
@@ -18,7 +21,7 @@ if exists('b:current_syntax')
   finish
 endif
 
-function <SID>MakeStyle(ls_color_style)
+function! <SID>MakeStyle(ls_color_style)
   let l:style_settings = split(a:ls_color_style, ';')
 
   let l:style_string = ''
@@ -52,7 +55,7 @@ function <SID>MakeStyle(ls_color_style)
   return l:style_string
 endfunction
 
-function <SID>MakeSyntax(ls_color)
+function! <SID>MakeSyntax(ls_color)
   let [l:glob, l:colors] = split(a:ls_color, '=')
 
   if l:glob =~ '^\*\..*'
@@ -62,13 +65,13 @@ function <SID>MakeSyntax(ls_color)
     let l:ext = substitute(l:ext, '[.~]', '_', 'g')
   elseif l:glob == 'di'
     let l:ext = 'DI'
-    let l:regex = '\v.+[/]\zs.+[/]$'
+    let l:regex = '\v.+[/].+[/]$'
   else
     return
   endif
 
-  execute 'hi ls_' . l:ext . <SID>MakeStyle(l:colors)
-  execute 'syn match ls_' . l:ext . ' display "' . l:regex . '"'
+  execute 'silent! hi ls_' . l:ext . <SID>MakeStyle(l:colors)
+  execute 'silent! syn match ls_' . l:ext . ' display "' . l:regex . '"'
 endfunction
 
 let s:ls_colors = split($LS_COLORS, ':')
