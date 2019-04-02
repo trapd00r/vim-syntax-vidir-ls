@@ -1,13 +1,15 @@
-*   What: ls colors for vidir file listings
-*  Where: $VIMRUNTIME/syntax/vidir-ls.vim
-* Author: Magnus Woldrich <m@japh.se>
-*    URL: http://github.com/trapd00r/vim-syntax-vidir-ls
+use LS\_COLORS in your [vidir](https://github.com/trapd00r/vidir)
+session inside vim. It can also be used in other places where you list
+filenames in your vim session, for example while editing a perl
+MANIFEST file.
 
-This is supposed to be used with [vidir][0]:
+
+![img](/extra/vidir-ls.png)
+
+Install to ``$VIMRUNTIME/syntax/vidir-ls.vim``
 
     export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
-![vidir-ls](http://devel.japh.se/vim-syntax-vidir-ls/vidir-ls.png)
 
 The colors are generated from the ``LS_COLORS`` environment variable
 automatically. Please see the [LS\_COLORS][1] repository for a set of good
